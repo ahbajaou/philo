@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   addback.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/02 23:14:36 by ahbajaou         ###   ########.fr       */
+/*   Created: 2023/05/02 23:17:26 by ahbajaou          #+#    #+#             */
+/*   Updated: 2023/05/02 23:19:31 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "../philo.h"
 
-typedef struct t_phil{
-
-    int *arr;
-    int data;
-    struct t_phil *next;
-}t_phil;
-
-#include <stdio.h>
-#include <stdlib.h>
-
-
-t_phil *create_list(int nb);
-
-
-#endif
+void    addback(t_phil *ronowa)
+{
+    t_phil *tmp;
+    tmp = ronowa;
+    while (tmp->next)
+        tmp = tmp->next;
+    
+}

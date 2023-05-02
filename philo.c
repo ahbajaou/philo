@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:21:36 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/01 21:03:54 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/01 21:05:45 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,42 +47,7 @@ int	ft_atoi(char *str)
 	}
 	return (j * k);
 }
-// char *ft_itoa(int nb)
-// {
-// 	int nbr;
-// 	int len;
-// 	char *res;
 
-// 	len = 0;
-// 	nbr = nb;
-// 	if (nb < 0)
-// 		len++;
-// 	while (nbr)
-// 	{
-// 		nbr /= 10;
-// 		len++;
-// 	}
-// 	res = malloc(sizeof(char ) * len + 1);
-// 	if (!res)
-// 		return (NULL);
-// 	res[len] = '\0';
-// 	if (nb == 0)
-// 		{
-// 			res[0] = '0';
-// 			return (res);
-// 		}
-// 	if (nb < 0)
-// 	{
-// 		res[0] = '-';
-// 		nb = -nb;
-// 	}
-// 	while (nb)
-// 	{
-// 		res[--len] = nb % 10 + '0';
-// 		nb /= 10;
-// 	}
-// 	return (res);
-// }
 int	main(int ac,char **av)
 {
 	int i;

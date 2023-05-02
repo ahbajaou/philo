@@ -6,12 +6,12 @@
 #    By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 00:20:56 by ahbajaou          #+#    #+#              #
-#    Updated: 2023/04/28 00:21:33 by ahbajaou         ###   ########.fr        #
+#    Updated: 2023/05/02 23:07:54 by ahbajaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRC = philo.c
+SRC = philo.c linklist/*.c
 CFLAGS = -Wall -Wextra -Werror
 cc = gcc
 
