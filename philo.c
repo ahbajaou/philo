@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:21:36 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/01 21:05:45 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/04 21:45:17 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ int	ft_atoi(char *str)
 	i = 0;
 	k = 1;
 	j = 0;
+	while (str[i])
+	{
+		if ((str[i] >= 'a' &&  str[i] <= 'z') || (str[i] >= 'A' &&  str[i] <= 'Z'))
+			ft_error();
+		i++;
+	}
+	i = 0;
 	while (str[i] == ' ' || (str[i] >= 7 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -66,11 +73,13 @@ int	main(int ac,char **av)
 				{
 					nb = ft_atoi(av[i]);
 					arr[i] = nb;
-					printf(">>>>>%d\n",arr[i]);
-					// printf("here\n");
 					i++;
 				}
-		
+				ronowa->philo = arr[1];
+				ronowa->timedie = arr[2];
+				ronowa->timeeat = arr[3];
+				ronowa->timesleep = arr[4];
+				printf(">>%d\n",ronowa->philo);
 			}
 	// }
 	// return (0);
