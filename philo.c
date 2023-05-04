@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:21:36 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/04 21:45:17 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/04 21:58:15 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int ac,char **av)
 				ronowa->timedie = arr[2];
 				ronowa->timeeat = arr[3];
 				ronowa->timesleep = arr[4];
-				printf(">>%d\n",ronowa->philo);
+				printf(">>%d\n",ronowa->timedie);
 			}
 	// }
 	// return (0);
