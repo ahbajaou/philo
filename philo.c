@@ -6,13 +6,14 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:21:36 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/04 21:58:15 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/11 12:09:54 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <stdlib.h> 
 #include <unistd.h>
+#include <pthread.h>
 
 void	ft_error(void)
 {
@@ -54,7 +55,13 @@ int	ft_atoi(char *str)
 	}
 	return (j * k);
 }
-
+void    *routine_life()
+{
+    int philo = 0;
+    philo++;
+    printf("philo number %d",philo);
+    return (0);
+}
 int	main(int ac,char **av)
 {
 	int i;
@@ -66,9 +73,10 @@ int	main(int ac,char **av)
 	ronowa = malloc(sizeof(t_phil));
 	arr = malloc(sizeof(int) * ac);
 
-		if (ac <= 6)
+		if (ac > 2)
 			{
 					// printf("%d\n",nb);
+                printf("here\n");
 				while (i < ac)
 				{
 					nb = ft_atoi(av[i]);
@@ -79,8 +87,63 @@ int	main(int ac,char **av)
 				ronowa->timedie = arr[2];
 				ronowa->timeeat = arr[3];
 				ronowa->timesleep = arr[4];
-				printf(">>%d\n",ronowa->timedie);
+				// printf(">>%d\n",ronowa->philo);
+                pthread_t ph[ronowa->philo];
+                int c = 0;
+                while (i < ronowa->philo)
+                {
+                    pthread_create(&ph[c],NULL,&routine_life,NULL);
+                    c++;
+                }
+                c = 0;
+                while (i < ronowa->philo)
+                {
+                    pthread_join(ph[c],NULL);
+                    i++;
+                }
+                printf("here we go\n");
 			}
+    return 0;
 	// }
 	// return (0);
 }
+// int counter = 0;
+// pthread_mutex_t mutex
+// void  *routine()
+// {
+//     int i = 0;
+//     // int counter = 0;
+//     // ronowa.counter = 0;
+//     while (i < 10000)
+//     {
+//         // ronowa.counter++;
+//         pthread_mutex_lock(&mutex);
+//         counter++;
+//         i++;
+//         pthread_mutex_unlock(&mutex);
+//     }
+//     return (0);
+// }
+
+// int main() 
+// {
+//     pthread_t arr[2];
+//     pthread_mutex_init(&mutex,NULL);
+//     int i = 0;
+//     while ( i <= 2)
+//     {
+//         pthread_create(&arr[i], NULL, &routine, NULL);
+//         i++;
+//     }
+//     i = 0;
+//     while (i <= 2)
+//     {
+//         pthread_join(arr[i], NULL);
+//         i++;
+//     }
+//     printf("value of counter is = %d\n",counter);
+//     pthread_mutex_destroy(&mutex);
+//     // pthread_create(&t2, NULL, &routine, NULL);
+//     // pthread_join(t2, NULL);
+//     return 0;
+// }
