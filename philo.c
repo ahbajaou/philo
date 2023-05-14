@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo->c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahbajaou <ahbajaou@student->42->fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:21:36 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/11 12:09:54 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/14 22:04:55 by ahbajaou         ###   ########->fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,68 +55,117 @@ int	ft_atoi(char *str)
 	}
 	return (j * k);
 }
-void    *routine_life()
+void    *routine_life(void *r)
 {
-    int philo = 0;
-    philo++;
-    printf("philo number %d",philo);
-    return (0);
+	// int i = 1;
+    int philo = *(int *)r;
+	// pthread_mutex_t *fracht;
+	// fracht = malloc(sizeof(pthread_mutex_t) * 5);
+	(void)philo;
+	t_phil *ronowa;
+	ronowa = malloc(sizeof(t_phil));
+		// pthread_mutex_lock(&fracht[5]);
+			printf(">>%d\n",ronowa->philo);
+		// pthread_mutex_unlock(&fracht[5]);
+	
+	// while (1)
+	// {
+		// printf("think\n");
+		// // sleep(1);
+		// // printf("here we go\n");
+    	// printf("pick up fork\n");
+		// printf("eating\n");
+		// // sleep(1);
+		// printf("pick down fork\n");
+		// printf("end eat\n");
+		// // sleep(1);
+	// }
+	return 0;
+	// int right = philo;
+	
+    // philo++;
+    // printf("philo number %d",philo);
+	return (0);
 }
 int	main(int ac,char **av)
 {
 	int i;
 	int nb;
-	int *arr;
+	// int *arr;
 	t_phil *ronowa;
+    pthread_t *ph;
+	pthread_mutex_t *fracht;
 
 	i = 1;
 	ronowa = malloc(sizeof(t_phil));
-	arr = malloc(sizeof(int) * ac);
+	ronowa->arr = malloc(sizeof(int) * ac);
+	ph = malloc(sizeof(pthread_t));
+	fracht = malloc(sizeof(pthread_mutex_t));
 
 		if (ac > 2)
 			{
 					// printf("%d\n",nb);
-                printf("here\n");
+                // printf("here\n");
 				while (i < ac)
 				{
 					nb = ft_atoi(av[i]);
-					arr[i] = nb;
+					ronowa->arr[i] = nb;
 					i++;
 				}
-				ronowa->philo = arr[1];
-				ronowa->timedie = arr[2];
-				ronowa->timeeat = arr[3];
-				ronowa->timesleep = arr[4];
-				// printf(">>%d\n",ronowa->philo);
-                pthread_t ph[ronowa->philo];
-                int c = 0;
-                while (i < ronowa->philo)
+				ronowa->philo = ronowa->arr[1];
+				ronowa->timedie = ronowa->arr[2];
+				ronowa->timeeat = ronowa->arr[3];
+				ronowa->timesleep = ronowa->arr[4];
+				// exit(0);
+					// printf("-----%d\n",ronowa->philo);
+				// int  *nami = malloc(sizeof(int ) * arr[1]);
+				int *ad = malloc(sizeof(int ) * ronowa->philo);
+                int c = 1;
+				while (c <= ronowa->philo)
+				{
+					pthread_mutex_init(&fracht[c], NULL);
+					c++;
+				}
+				c = 1;
+                while (c <= ronowa->philo)
                 {
-                    pthread_create(&ph[c],NULL,&routine_life,NULL);
+					ad[c] = c;
+					// int x = c;
+					// printf("-----%d\n",ad[c]);
+                    pthread_create(&ph[c], NULL, &routine_life, &ad[c]);
                     c++;
                 }
-                c = 0;
-                while (i < ronowa->philo)
+                c = 1;
+                while (c <= ronowa->philo)
                 {
                     pthread_join(ph[c],NULL);
-                    i++;
+                    c++;
                 }
-                printf("here we go\n");
+				c = 1;
+				while (c <= ronowa->philo)
+				{
+					pthread_mutex_destroy(&fracht[c]);
+					c++;
+				}
+                // printf("here we go\n");
 			}
+			// free(ph);
+			// free(arr);
+			// free(ronowa);
     return 0;
 	// }
 	// return (0);
 }
 // int counter = 0;
-// pthread_mutex_t mutex
+// pthrea   
 // void  *routine()
 // {
 //     int i = 0;
 //     // int counter = 0;
-//     // ronowa.counter = 0;
+//     // ronowa->counter = 0;
 //     while (i < 10000)
 //     {
-//         // ronowa.counter++;
+//         // ronowa->counter++;
 //         pthread_mutex_lock(&mutex);
 //         counter++;
 //         i++;
