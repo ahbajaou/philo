@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/13 02:51:50 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/17 01:16:55 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct t_phil{
 
     int *arr;
     int philo;
+    int index;
     int timeeat;
     int timedie;
     int timesleep;
