@@ -1,19 +1,19 @@
-/* ************************************************************************** */
 /*                                                                            */
+/* ************************************************************************** */
 /*                                                        :::      ::::::::   */
 /*   philo->c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahbajaou <ahbajaou@student->42->fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:21:36 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/14 22:04:55 by ahbajaou         ###   ########->fr       */
+/*   Updated: 2023/05/19 16:20:37 by ahbajaou         ###   ########->fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <stdlib.h> 
 #include <unistd.h>
-#include <pthread.h>
+
 
 void	ft_error(void)
 {
@@ -55,132 +55,88 @@ int	ft_atoi(char *str)
 	}
 	return (j * k);
 }
-void    *routine_life(void *r)
+t_phil stock_param(t_phil ronowa,char **av,int ac)
 {
-	t_phil *nami;
-	// nami = malloc(sizeof(t_phil));
-	 nami = (t_phil *)r;
-	 int left_fork = nami->index;
-	 int right_fork = (nami->index + 1) % nami->philo;
-	//  printf("left ==== %d right ===== %d\n",left_fork,right_fork);
-	//  printf("index = %d\n",nami->index);
-	 pthread_mutex_t *fracht;
-	 fracht = malloc(sizeof(pthread_mutex_t));
-	// printf(">>>>%d ---------%d\n",left_fork,right_fork);
-	//  while (1)
-	//  {
-		pthread_mutex_lock(&fracht[left_fork]);
-		printf("philo %d pick up fork %d\n",nami->index,left_fork);
-		pthread_mutex_lock(&fracht[right_fork]);
-		printf("philo %d pick up fork %d\n",nami->index,right_fork);
+		ronowa.philo = ft_atoi(av[1]);
+		ronowa.timedie = ft_atoi(av[2]);
+		ronowa.timeeat = ft_atoi(av[3]);
+		ronowa.timesleep = ft_atoi(av[4]);
+	if (ac == 6)
+		ronowa.timet = ft_atoi(av[5]);
+	return (ronowa);
+}
+void	*routine(void *arg)
+{
+	
+	t_phil *ronowa;
+	ronowa = (t_phil *)arg;
+	printf(">>>>>%d\n", ronowa->data);
 
-		printf("philo %d start eat\n",nami->index);
-		pthread_mutex_unlock(&fracht[left_fork]);
-		printf("philo %d pick down fork %d\n",nami->index,left_fork);
-		pthread_mutex_unlock(&fracht[right_fork]);
-		printf("philo %d pick down fork %d\n",nami->index,right_fork);
-
-	//  }
-
-	// (void)r;
 	return (0);
 }
-int	main(int ac,char **av)
+int main(int ac,char **av)
 {
-	int i;
-	// int nb;
-	// int *arr;
-	t_phil *ronowa;
-    pthread_t *ph;
-	pthread_mutex_t *fracht;
+	t_phil *tmp;
+	t_phil *philo;
+	t_phil ronowa;
 
-	i = 1;
-	ronowa = malloc(sizeof(t_phil) * ft_atoi(av[1]));
-	ph = malloc(sizeof(pthread_t));
-	fracht = malloc(sizeof(pthread_mutex_t));
-		if (ac > 2)
-			{
-				// int p = 0;
-				// while (p < ft_atoi(av[1]))
-				// {
-				// 		printf("====%d\n",ronowa->philo);
-				// 		p++;
-				// }
-                ronowa->index = 1;
-				while (ronowa->index <= ft_atoi(av[1]))
-				{
-					pthread_mutex_init(&fracht[ronowa->index], NULL);
-					ronowa->index++;
-				}
-				ronowa->index = 1;
-                while (ronowa->index <= ft_atoi(av[1]))
-                {
-					ronowa[ronowa->index].philo = ft_atoi(av[1]);
-					ronowa[ronowa->index].timedie = ft_atoi(av[2]);
-					ronowa[ronowa->index].timeeat = ft_atoi(av[3]);
-					ronowa[ronowa->index].timesleep = ft_atoi(av[4]);
-					ronowa[ronowa->index].index = ronowa->index;
-                    pthread_create(&ph[ronowa->index], NULL, &routine_life,&ronowa[ronowa->index]);
-                    ronowa->index++;
-                }
-                ronowa->index = 1;
-                while (ronowa->index <= ft_atoi(av[1]))
-                {
-                    pthread_join(ph[ronowa->index],NULL);
-                    ronowa->index++;
-                }
-				ronowa->index = 1;
-				while (ronowa->index <= ft_atoi(av[1]))
-				{
-					pthread_mutex_destroy(&fracht[ronowa->index]);
-					ronowa->index++;
-				}
-                // printf("here we go\n");
-			}
-			// free(ph);
-			// free(arr);
-			// free(ronowa);
-    return 0;
-	// }
-	// return (0);
+	tmp = NULL;
+	philo = NULL;
+	int i = 1;
+	if (ac == 5 || ac == 6)
+	{
+	
+		ronowa = stock_param(ronowa,av,ac);
+		// t_phil *creat_new_link = NULL;
+		philo =  add_to_list(&ronowa);
+		tmp = philo;
+		while (tmp != NULL)
+		{
+			printf("data >>>>>>>>>> %d\n", tmp->data);
+			tmp = tmp->next;
+		}
+		
+		// printf("here\n");
+		// printf("philo_num >>>>>%d\n", philowat->philo);
+		tmp = philo;
+		while (i <= ronowa.philo)
+		{
+			pthread_mutex_init(&tmp->fork,NULL);
+			tmp = tmp->next;
+			i++;
+		}
+		i = 1;
+		tmp = philo;
+		printf("philo >>>>>>>>>>>>>>>> %d\n", tmp->philo);
+		while (i <= ronowa.philo)
+		{
+			pthread_create(&tmp->ph, NULL, &routine, tmp);
+			tmp = tmp->next;
+			i++;
+		}
+		i = 1;
+		tmp = philo;
+		while (i <= ronowa.philo)
+		{
+			pthread_join(tmp->ph,NULL);
+			tmp = tmp->next;
+			i++;
+		}
+		tmp = philo;
+		i = 1;
+		while (i <= ronowa.philo)
+		{
+			pthread_mutex_destroy(&tmp->fork);
+			tmp = tmp->next;
+			i++;
+		}
+		tmp = philo;
+		// while (tmp)
+		// {
+		// 		printf("philo = %d\n",tmp->data);
+		// 		tmp = tmp->next;
+		// }
+		while(1);
+	}
+	return (0);
 }
-// int counter = 0;
-// pthrea   
-// void  *routine()
-// {
-//     int i = 0;
-//     // int counter = 0;
-//     // ronowa->counter = 0;
-//     while (i < 10000)
-//     {
-//         // ronowa->counter++;
-//         pthread_mutex_lock(&mutex);
-//         counter++;
-//         i++;
-//         pthread_mutex_unlock(&mutex);
-//     }
-//     return (0);
-// }
-
-// int main() 
-// {
-//     pthread_t arr[2];
-//     pthread_mutex_init(&mutex,NULL);
-//     int i = 0;
-//     while ( i <= 2)
-//     {
-//         pthread_create(&arr[i], NULL, &routine, NULL);
-//         i++;
-//     }
-//     i = 0;
-//     while (i <= 2)
-//     {
-//         pthread_join(arr[i], NULL);
-//         i++;
-//     }
-//     printf("value of counter is = %d\n",counter);
-//     pthread_mutex_destroy(&mutex);
-//     // pthread_create(&t2, NULL, &routine, NULL);
-//     // pthread_join(t2, NULL);
-//     return 0;
-// }
