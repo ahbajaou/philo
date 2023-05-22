@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 23:05:42 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/21 02:39:14 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/21 22:19:58 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ t_phil	*create_list(int nb, t_phil *philowat)
 	new = malloc(sizeof(t_phil));
 	new->data = nb;
 	new->philo = philowat->philo;
+	new->timedie = philowat->timedie;
+	new->timeeat = philowat->timeeat;
+	new->timesleep = philowat->timesleep;
+	new->timet = philowat->timet;
+	new->soul.time = philowat->soul.time;
 	new->next = NULL;
 	return (new);
 }

@@ -15,6 +15,7 @@
 #include <unistd.h>
 
 
+
 void	ft_error(void)
 {
 	write(1,"Error\n",6);
@@ -63,15 +64,47 @@ t_phil stock_param(t_phil ronowa,char **av,int ac)
 		ronowa.timesleep = ft_atoi(av[4]);
 	if (ac == 6)
 		ronowa.timet = ft_atoi(av[5]);
+	else
+		ronowa.timet = 0;
 	return (ronowa);
 }
+long long get_time()
+{
+	struct timeval weqt;
+	gettimeofday(&weqt,NULL);
+	return (weqt.tv_sec * 1000 + weqt.tv_usec / 1000);
+}
+
+void	ft_tbe3(t_phil *philo,char *str)
+{
+
+	pthread_mutex_init(&philo->tbe3,NULL);
+	pthread_mutex_lock(&philo->tbe3);
+	printf("%lld %d %s\n",get_time() - philo->soul.time, philo->data, str);
+	pthread_mutex_unlock(&philo->tbe3);
+}
+
 void	*routine(void *arg)
 {
 	
-	t_phil *ronowa;
-	ronowa = (t_phil *)arg;
-	printf(">>>>>%d\n", ronowa->data);
-
+	t_phil *brok;
+	brok = (t_phil *)arg;
+	while (1)
+	{
+		pthread_mutex_lock(&brok->fork);
+		ft_tbe3(brok,"took frok");
+		pthread_mutex_lock(&brok->next->fork);
+		ft_tbe3(brok,"took frok");
+		ft_tbe3(brok,"start eat");
+		usleep((unsigned int)brok->timeeat);
+		pthread_mutex_unlock(&brok->fork);
+		ft_tbe3(brok,"put fork");
+		pthread_mutex_unlock(&brok->next->fork);
+		ft_tbe3(brok,"put fork");
+		ft_tbe3(brok,"sleep");
+		usleep((unsigned int)brok->timesleep);
+		ft_tbe3(brok,"think");
+	}
 	return (0);
 }
 int main(int ac,char **av)
@@ -83,21 +116,12 @@ int main(int ac,char **av)
 	tmp = NULL;
 	philo = NULL;
 	int i = 1;
+	philo = malloc(sizeof(t_phil));
 	if (ac == 5 || ac == 6)
 	{
-	
+		ronowa.soul.time = get_time();
 		ronowa = stock_param(ronowa,av,ac);
-		// t_phil *creat_new_link = NULL;
 		philo =  add_to_list(&ronowa);
-		tmp = philo;
-		while (tmp != NULL)
-		{
-			printf("data >>>>>>>>>> %d\n", tmp->data);
-			tmp = tmp->next;
-		}
-		
-		// printf("here\n");
-		// printf("philo_num >>>>>%d\n", philowat->philo);
 		tmp = philo;
 		while (i <= ronowa.philo)
 		{
@@ -107,10 +131,10 @@ int main(int ac,char **av)
 		}
 		i = 1;
 		tmp = philo;
-		printf("philo >>>>>>>>>>>>>>>> %d\n", tmp->philo);
 		while (i <= ronowa.philo)
 		{
 			pthread_create(&tmp->ph, NULL, &routine, tmp);
+			usleep(100);
 			tmp = tmp->next;
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 23:17:26 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/21 02:37:22 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/21 15:45:49 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 void	addback(t_phil **list, t_phil *new)
 {
 	t_phil	*tmp;
-	tmp = (*list);
+
 	if ((*list) == NULL)
 	{
-		printf("ARGSEGRESHRE\n");
 		(*list) = new;
+		new->next = (*list);
 	}
 	else
 	{
-		while ((*list)->next != NULL)
-		{
-			(*list) = (*list)->next;
-		}
-		(*list)->next = new;
-		(*list) = tmp;
+		tmp = (*list);
+		while (tmp->next != (*list))
+			tmp = tmp->next;
+		tmp->next = new;
+		new->next = (*list);
 	}
 }
+
 t_phil	*add_to_list(t_phil *philowat)
 {
 	int	i;
