@@ -158,13 +158,24 @@ void	check_dead_phil(t_philo *ronowa)
 		}
 	}
 }
+void	check_pars(char **str)
+{
 
+	if (ft_atoi(str[2]) <= 60)
+		exit(0);	
+	if (ft_atoi(str[3]) <= 60)
+		exit(0);
+	if (ft_atoi(str[1]) <= 0)
+		exit(0);
+}
+	
 int	main(int ac,char **av)
 {
 	int i;
 	t_philo *ronowa;
 	t_data *zoro;
 
+	check_pars(av);
 	int nbr = ft_atoi(av[1]);
 	ronowa = malloc(sizeof(t_philo) * nbr);
 	zoro = malloc(sizeof(t_data) * nbr);
