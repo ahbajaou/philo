@@ -75,7 +75,7 @@ void	sleepo(unsigned long t_sleep)
 }
 void	ft_tbe3(t_philo *philo,char *str)
 {
-	pthread_mutex_lock(philo->data->_print);
+	// pthread_mutex_lock(philo->data->_print);
 	printf("%lld %d %s\n",get_time() - philo->time_start, philo->ident + 1, str);
 	pthread_mutex_unlock(philo->data->_print);
 }
@@ -97,7 +97,9 @@ void *routine_life(void *arg)
 		sleepo((unsigned long)ronowa->data->timeeat);
 		pthread_mutex_unlock(&ronowa->data->fork[left]);
 		pthread_mutex_unlock(&ronowa->data->fork[right]);
+		pthread_mutex_lock(ronowa->data->_eat);
 		ronowa->nm_of_meal++;
+		pthread_mutex_unlock(ronowa->data->_eat);
 		ft_tbe3(ronowa,"sleep");
 		sleepo((unsigned long)ronowa->data->timesleep);
 		ft_tbe3(ronowa,"think");
@@ -149,11 +151,14 @@ void	check_dead_phil(t_philo *ronowa)
 		i = 0;
 		while (i < ronowa->data->philo)
 		{
+			// pthread_mutex_lock(ronowa->data->_print);
 			if (get_time() - ronowa[i].last_meal >= ronowa->data->timedie)
 			{
-				ft_tbe3(ronowa, "is dead");
+				// ft_tbe3(ronowa, "is dead");
+
 				exit(1);
 			}
+			// pthread_mutex_unlock(ronowa->data->_print);
 			i++;
 		}
 	}
