@@ -86,7 +86,7 @@ void *routine_life(void *arg)
 	ronowa = (t_philo *)arg;
 	int left = ronowa->ident;
 	int right = (ronowa->ident + 1) % ronowa->data->philo;
-	while (1)
+	while (1)  
 	{
 		pthread_mutex_lock(&ronowa->data->fork[left]);
 		ft_tbe3(ronowa,"took frok");
@@ -97,13 +97,12 @@ void *routine_life(void *arg)
 		sleepo((unsigned long)ronowa->data->timeeat);
 		pthread_mutex_unlock(&ronowa->data->fork[left]);
 		pthread_mutex_unlock(&ronowa->data->fork[right]);
-		pthread_mutex_lock(ronowa->data->_eat);
+		// pthread_mutex_lock(ronowa->data->_eat);
 		ronowa->nm_of_meal++;
-		pthread_mutex_unlock(ronowa->data->_eat);
+		// pthread_mutex_unlock(ronowa->data->_eat);
 		ft_tbe3(ronowa,"sleep");
 		sleepo((unsigned long)ronowa->data->timesleep);
 		ft_tbe3(ronowa,"think");
-
 	}
 	return (0);
 }
@@ -155,12 +154,12 @@ void	check_dead_phil(t_philo *ronowa)
 			if ( get_time() - ronowa[i].last_meal >= ronowa->data->timedie)
 			{
 				ft_tbe3(ronowa, "is dead");
-				pthread_mutex_unlock(ronowa->data->_died);
-				pthread_mutex_destroy(ronowa->data->_died);
+				// pthread_mutex_unlock(ronowa->data->_died);
+				// pthread_mutex_destroy(ronowa->data->_died);
 				exit(1);
 			}
-			pthread_mutex_unlock(ronowa->data->_died);
-			pthread_mutex_destroy(ronowa->data->_died);
+			// pthread_mutex_unlock(ronowa->data->_died);
+			// pthread_mutex_destroy(ronowa->data->_died);
 			i++;
 		}
 	}
