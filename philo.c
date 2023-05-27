@@ -75,7 +75,7 @@ void	sleepo(unsigned long t_sleep)
 }
 void	ft_tbe3(t_philo *philo,char *str)
 {
-	// pthread_mutex_lock(philo->data->_print);
+	pthread_mutex_lock(philo->data->_print);
 	printf("%lld %d %s\n",get_time() - philo->time_start, philo->ident + 1, str);
 	pthread_mutex_unlock(philo->data->_print);
 }
@@ -135,9 +135,9 @@ void	check_dead_phil(t_philo *ronowa)
 	while (1)
 	{
 		i = 0;
-		if (ronowa->data->meal == 0)
-			exit(1);
-		else if (ronowa->data->meal != -1)
+		// if (ronowa->data->meal == 0)
+		// 	exit(1);
+		if (ronowa->data->meal != -1)
 		{
 			while (i < ronowa->data->philo)
 			{
@@ -151,14 +151,16 @@ void	check_dead_phil(t_philo *ronowa)
 		i = 0;
 		while (i < ronowa->data->philo)
 		{
-			// pthread_mutex_lock(ronowa->data->_print);
-			if (get_time() - ronowa[i].last_meal >= ronowa->data->timedie)
+			// pthread_mutex_lock(ronowa->data->_died); 
+			if ( get_time() - ronowa[i].last_meal >= ronowa->data->timedie)
 			{
-				// ft_tbe3(ronowa, "is dead");
-
+				ft_tbe3(ronowa, "is dead");
+				pthread_mutex_unlock(ronowa->data->_died);
+				pthread_mutex_destroy(ronowa->data->_died);
 				exit(1);
 			}
-			// pthread_mutex_unlock(ronowa->data->_print);
+			pthread_mutex_unlock(ronowa->data->_died);
+			pthread_mutex_destroy(ronowa->data->_died);
 			i++;
 		}
 	}
@@ -187,6 +189,7 @@ int	main(int ac,char **av)
 	zoro->fork = malloc(sizeof(pthread_mutex_t ) * nbr);
 	zoro->_print = malloc(sizeof(pthread_mutex_t));
 	zoro->_eat = malloc(sizeof(pthread_mutex_t));
+	zoro->_died = malloc(sizeof(pthread_mutex_t));
 
 	i = -1;
 		if (ac == 5 || ac == 6)
@@ -195,27 +198,38 @@ int	main(int ac,char **av)
 				pthread_mutex_init(&zoro->fork[i], NULL);
 			pthread_mutex_init(zoro->_print,NULL);
 			pthread_mutex_init(zoro->_eat,NULL);
-			if (ft_atoi(av[1]) == 0)
-				return (0);
+			pthread_mutex_init(zoro->_died,NULL);
+
 			zoro->philo = ft_atoi(av[1]);
 			zoro->timedie = ft_atoi(av[2]);
 			zoro->timeeat = ft_atoi(av[3]);
 			zoro->timesleep = ft_atoi(av[4]);
 			zoro->meal = -1;
 			if (ac == 6)
+			{
 					zoro->meal = ft_atoi(av[5]);
+					if (zoro->meal == 0)
+						exit(0);
+			}
 			i = 0;
 			while (i < nbr)
 			{
-				ronowa[i].last_meal = get_time();
 				ronowa[i].time_start = get_time();
 				ronowa[i].ident = i;
 				ronowa[i].nm_of_meal = 0;
 				ronowa[i].data = zoro;
+
+				ronowa[i].last_meal = get_time();
 				i++; 
 			}
 			to_routine_two(ronowa);
+			// pthread_mutex_lock(ronowa->data->_eat);
 			check_dead_phil(ronowa);
+			// pthread_mutex_destroy(ronowa->data->_died);
+			// pthread_mutex_unlock(ronowa->data->_eat);
+		
+
+		
 		}
     return 0;
 }

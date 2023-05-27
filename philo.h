@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/25 21:19:50 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/05/27 03:41:16 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct t_data{
     pthread_mutex_t *fork;
     pthread_mutex_t *_print;
     pthread_mutex_t *_eat;
+    pthread_mutex_t *_died;
+    // pthread_mutex_t *died;
     pthread_t ph;
     int philo;
     int timeeat;
