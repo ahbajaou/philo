@@ -74,6 +74,8 @@ void *routine_life(void *arg)
 		sleepo((unsigned long)ronowa->data->timesleep);
 		pthread_mutex_lock(ronowa->data->_eat);
 		ronowa->nm_of_meal++;
+		// pthread_mutex_lock(ronowa->data->_race);
+		// pthread_mutex_unlock(ronowa->data->_race);
 		pthread_mutex_unlock(ronowa->data->_eat);
 		if (ronowa->nm_of_meal == ronowa->data->meal)
 			break;
@@ -134,6 +136,7 @@ int	main(int ac,char **av)
 	zoro->_eat = malloc(sizeof(pthread_mutex_t));
 	zoro->_died = malloc(sizeof(pthread_mutex_t));
 	zoro->_print = malloc(sizeof(pthread_mutex_t));
+	zoro->_race = malloc(sizeof(pthread_mutex_t));
 
 	i = -1;
 		if (ac == 5 || ac == 6)
@@ -143,6 +146,7 @@ int	main(int ac,char **av)
 			pthread_mutex_init(zoro->_print,NULL);
 			pthread_mutex_init(zoro->_eat,NULL);
 			pthread_mutex_init(zoro->_died,NULL);
+			pthread_mutex_init(zoro->_race,NULL);
 
 			zoro->philo = ft_atoi(av[1]);
 			zoro->timedie = ft_atoi(av[2]);
