@@ -6,13 +6,13 @@
 #    By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 00:20:56 by ahbajaou          #+#    #+#              #
-#    Updated: 2023/05/27 02:55:04 by ahbajaou         ###   ########.fr        #
+#    Updated: 2023/05/31 22:44:49 by ahbajaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = philo
-SRC = philo.c 
+SRC = philo.c tools.c died.c
 CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 cc = gcc
 
