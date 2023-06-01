@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:32:44 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 03:22:37 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 04:19:56 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	stock(t_data *zoro, char **av, int ac)
 	{
 		zoro->meal = ft_atoi(av[5]);
 		if (zoro->meal == 0)
-			exit(0);
+			return ;
 	}
 }
 

@@ -6,13 +6,13 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 05:05:10 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 03:22:40 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:15:24 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	died_1(t_philo *ronowa)
+int	died_1(t_philo *ronowa)
 {
 	int	i;
 	int	j;
@@ -29,15 +29,18 @@ void	died_1(t_philo *ronowa)
 			if (j == ronowa->data->philo)
 			{
 				pthread_mutex_unlock(ronowa->data->_eat);
-				ft_tbe3(ronowa, "meal");
+				// if (ft_tbe3(ronowa, "meal") == 1)
+				// 	return (1);
+				break ;
 			}
 			i++;
 		}
 	}
 	pthread_mutex_unlock(ronowa->data->_eat);
+	return (0);
 }
 
-void	died_2(t_philo *ronowa)
+int	died_2(t_philo *ronowa)
 {
 	int	i;
 
@@ -50,12 +53,14 @@ void	died_2(t_philo *ronowa)
 			if (ronowa[i].nm_of_meal == ronowa->data->meal)
 			{
 				pthread_mutex_unlock(ronowa->data->_race);
-				break ;
+				return (1);
 			}
-			ft_tbe3(ronowa, "is dead");
+			if (ft_tbe3(ronowa, "is dead") == 1)
+				return (1);
 			pthread_mutex_unlock(ronowa->data->_died);
 		}
 		pthread_mutex_unlock(ronowa->data->_died);
 		i++;
 	}
+	return (0);
 }

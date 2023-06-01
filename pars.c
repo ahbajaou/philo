@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:55:55 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 03:27:33 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:02:33 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ int	ft_atoi(char *str)
 	return (j * k);
 }
 
-void	check_pars(char **str)
+int	check_pars(char **str)
 {
 	if (ft_atoi(str[2]) <= 60)
-		exit(0);
+		return (1);
 	if (ft_atoi(str[3]) <= 60)
-		exit(0);
+		return (1);
 	if (ft_atoi(str[1]) <= 0)
-		exit(0);
+		return (1);
+	return (0);
 }
