@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 05:05:10 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 08:16:59 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 09:47:23 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ int	died_2(t_philo *ronowa)
 		pthread_mutex_lock(ronowa->data->_died);
 		if (get_time() - ronowa[i].last_meal >= ronowa->data->timedie)
 		{
+			pthread_mutex_lock(ronowa->data->_eat);
 			if (ronowa[i].nm_of_meal == ronowa->data->meal)
 			{
 				pthread_mutex_unlock(ronowa->data->_race);
 				return (1);
 			}
-			if (ft_tbe3(ronowa, "is dead") == 1)
+			pthread_mutex_unlock(ronowa->data->_eat);
+			if (ft_tbe3(ronowa, "died") == 1)
 				return (1);
 			pthread_mutex_unlock(ronowa->data->_died);
 		}

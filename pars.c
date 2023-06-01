@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:55:55 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 08:46:34 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 10:10:11 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int	ft_atoi(char *str)
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-		{
 			k *= -1;
-			ft_error();
-		}
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
@@ -40,31 +37,44 @@ int	ft_atoi(char *str)
 	return (j * k);
 }
 
+int	check_pars_2(char **str)
+{
+	if (ft_atoi(str[2]) < 60)
+		return (1);
+	if (ft_atoi(str[3]) < 60)
+		return (1);
+	if (ft_atoi(str[4]) < 60)
+		return (1);
+	if (ft_atoi(str[1]) <= 0 || ft_atoi(str[1]) >= 201)
+		return (1);
+	return (0);
+}
+
 int	check_pars(char **str)
 {
 	int	i;
 	int	j;
 
-	if (ft_atoi(str[2]) <= 60)
-		return (1);
-	if (ft_atoi(str[3]) <= 60)
-		return (1);
-	if (ft_atoi(str[1]) <= 0 || ft_atoi(str[1]) >= 201)
-		return (1);
 	i = 1;
-	while (str[i++])
+	while (str[i])
 	{
 		j = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] >= 'a' && str[i][j] <= 'z')
-				return (ft_error());
-			if (str[i][j] >= 'A' && str[i][j] <= 'Z')
+			if ((str[i][j] >= 'a' && str[i][j] <= 'z')
+				|| (str[i][j] >= 'A' && str[i][j] <= 'Z'))
 				return (ft_error());
 			if (str[i][j] == ' ' || str[i][j] == '\t')
 				return (ft_error());
+			if (str[i][j] == '-')
+				return (ft_error());
+			if (str[i][j] != ' ' && str[i][j + 1] == '+')
+				return (ft_error());
 			j++;
 		}
+		i++;
 	}
+	if (check_pars_2(str) == 1)
+		return (ft_error());
 	return (0);
 }

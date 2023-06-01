@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 03:08:51 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 08:36:30 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 09:59:03 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	routine_2(t_philo *ronowa, int left, int right)
 	sleepo((unsigned long)ronowa->data->timeeat);
 	pthread_mutex_unlock(&ronowa->data->fork[left]);
 	pthread_mutex_unlock(&ronowa->data->fork[right]);
-	ft_tbe3(ronowa, "sleep");
+	ft_tbe3(ronowa, "is sleeping");
 	sleepo((unsigned long)ronowa->data->timesleep);
 	pthread_mutex_lock(ronowa->data->_eat);
 	ronowa->nm_of_meal++;
 	pthread_mutex_unlock(ronowa->data->_eat);
-	ft_tbe3(ronowa, "think");
+	ft_tbe3(ronowa, "is thinking");
 }
 
 void	*routine_life(void *arg)
@@ -41,10 +41,10 @@ void	*routine_life(void *arg)
 		if (ronowa->nm_of_meal == ronowa->data->meal)
 			break ;
 		pthread_mutex_unlock(ronowa->data->_race);
-		ft_tbe3(ronowa, "took frok");
+		ft_tbe3(ronowa, "has taken a fork");
 		pthread_mutex_lock(&ronowa->data->fork[right]);
-		ft_tbe3(ronowa, "took frok");
-		ft_tbe3(ronowa, "start eat");
+		ft_tbe3(ronowa, "has taken a fork");
+		ft_tbe3(ronowa, "is eating");
 		pthread_mutex_lock(ronowa->data->_died);
 		ronowa->last_meal = get_time();
 		pthread_mutex_unlock(ronowa->data->_died);
@@ -86,7 +86,8 @@ int	main(int ac, char **av)
 {
 	t_philo	*ronowa;
 	t_data	*zoro;
-
+	if (ac >= 0 && ac <= 4)
+		return (ft_error());
 	if (check_pars(av) == 1)
 		return (0);
 	ronowa = malloc(sizeof(t_philo) * ft_atoi(av[1]));

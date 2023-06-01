@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 08:08:26 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:48:10 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ typedef struct t_philo{
 
 long long	get_time(void);
 void		sleepo(unsigned long t_sleep);
-int		ft_tbe3(t_philo *philo, char *str);
-int		ft_error(void);
+int			ft_tbe3(t_philo *philo, char *str);
+int			ft_error(void);
 int			ft_atoi(char *str);
-int		died_1(t_philo *ronowa);
-int		died_2(t_philo *ronowa);
+int			died_1(t_philo *ronowa);
+int			died_2(t_philo *ronowa);
 void		stock(t_data *zoro, char **av, int ac);
 void		stock_2(t_philo *ronowa, t_data *zoro, int nbr);
 void		stock_3(t_data *zoro, int nbr);
-int		check_pars(char **str);
+int			check_pars(char **str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 02:57:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 08:26:42 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 09:47:50 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_tbe3(t_philo *philo, char *str)
 		return (1);
 	printf("%lld %d %s\n", get_time() - philo->time_start,
 		philo->ident + 1, str);
-	if (str[3] == 'd')
+	if (str[0] == 'd')
 		return (1);
 	pthread_mutex_unlock(philo->data->_print);
 	return (0);
