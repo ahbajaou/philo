@@ -6,25 +6,11 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:55:55 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 08:02:33 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:46:34 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	ft_atoi_2(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] >= 'a' && str[i] <= 'z')
-			|| (str[i] >= 'A' && str[i] <= 'Z'))
-			ft_error();
-		i++;
-	}
-}
 
 int	ft_atoi(char *str)
 {
@@ -56,11 +42,29 @@ int	ft_atoi(char *str)
 
 int	check_pars(char **str)
 {
+	int	i;
+	int	j;
+
 	if (ft_atoi(str[2]) <= 60)
 		return (1);
 	if (ft_atoi(str[3]) <= 60)
 		return (1);
-	if (ft_atoi(str[1]) <= 0)
+	if (ft_atoi(str[1]) <= 0 || ft_atoi(str[1]) >= 201)
 		return (1);
+	i = 1;
+	while (str[i++])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] >= 'a' && str[i][j] <= 'z')
+				return (ft_error());
+			if (str[i][j] >= 'A' && str[i][j] <= 'Z')
+				return (ft_error());
+			if (str[i][j] == ' ' || str[i][j] == '\t')
+				return (ft_error());
+			j++;
+		}
+	}
 	return (0);
 }

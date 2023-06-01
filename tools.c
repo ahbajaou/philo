@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 02:57:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 08:06:55 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:26:42 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_error(void)
 {
 	write(1, "Error\n", 6);
-	return (0);
+	return (1);
 }
 
 long long	get_time(void)

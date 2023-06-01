@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 05:05:10 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 08:15:24 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:16:59 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ int	died_1(t_philo *ronowa)
 			if (j == ronowa->data->philo)
 			{
 				pthread_mutex_unlock(ronowa->data->_eat);
-				// if (ft_tbe3(ronowa, "meal") == 1)
-				// 	return (1);
-				break ;
+				if (ft_tbe3(ronowa, "meal") == 1)
+					return (1);
 			}
 			i++;
 		}
