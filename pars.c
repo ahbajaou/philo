@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:55:55 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 10:10:11 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 10:56:55 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ int	check_pars(char **str)
 			if ((str[i][j] >= 'a' && str[i][j] <= 'z')
 				|| (str[i][j] >= 'A' && str[i][j] <= 'Z'))
 				return (ft_error());
-			if (str[i][j] == ' ' || str[i][j] == '\t')
+			if ((str[i][j] == ' ' || str[i][j] == '\t' )
+				&& (str[i][j + 1] == ' ' || str[i][j + 1] == '\t'))
 				return (ft_error());
-			if (str[i][j] == '-')
-				return (ft_error());
-			if (str[i][j] != ' ' && str[i][j + 1] == '+')
+			if ((str[i][j] != ' ' && str[i][j + 1] == '+') || str[i][j] == '-')
 				return (ft_error());
 			j++;
 		}

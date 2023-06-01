@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 03:08:51 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 09:59:03 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 10:58:44 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int ac, char **av)
 {
 	t_philo	*ronowa;
 	t_data	*zoro;
+
 	if (ac >= 0 && ac <= 4)
 		return (ft_error());
 	if (check_pars(av) == 1)
