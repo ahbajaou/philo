@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/05/31 22:51:20 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 02:53:11 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ int	ft_atoi(char *str);
 void	ft_error(void);
 void    died_1(t_philo *ronowa);
 void    died_2(t_philo *ronowa);
+void    stock(t_data *zoro,char **av,int ac);
+void    stock_2(t_philo *ronowa,t_data *zoro,int nbr);
+void    stock_3(t_data *zoro,int nbr);
 
 #endif
