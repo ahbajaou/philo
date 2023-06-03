@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 03:08:51 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/02 09:55:19 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/03 15:28:44 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 
 	if (ac >= 0 && ac <= 4)
 		return (ft_error());
-	if (check_pars(av) == 1)
+	if (check_pars(av, ac) == 1)
 		return (0);
 	ronowa = malloc(sizeof(t_philo) * ft_atoi(av[1]));
 	zoro = malloc(sizeof(t_data) * ft_atoi(av[1]));
