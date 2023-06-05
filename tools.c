@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 02:57:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/01 09:47:50 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/03 15:35:46 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sleepo(unsigned long t_sleep)
 		;
 }
 
-int	ft_tbe3(t_philo *philo, char *str)
+int	ft_print(t_philo *philo, char *str)
 {
 	pthread_mutex_lock(philo->data->_print);
 	if (str[0] == 'm')

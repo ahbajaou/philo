@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/03 14:37:38 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/03 15:36:28 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct t_pars{
 }t_pars;
 long long	get_time(void);
 void		sleepo(unsigned long t_sleep);
-int			ft_tbe3(t_philo *philo, char *str);
+int			ft_print(t_philo *philo, char *str);
 int			ft_error(void);
 int			ft_atoi(char *str);
 int			died_1(t_philo *ronowa);
