@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 03:08:51 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/05 22:13:23 by ahbajaou         ###   ########.fr       */
+/*   Created: 2023/06/06 16:29:47 by ahbajaou          #+#    #+#             */
+/*   Updated: 2023/06/06 20:31:52 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	routine_2(t_philo *ronowa, int left, int right)
 {
-	sleepo((unsigned long)ronowa->data->timeeat);
+	usleep(ronowa->data->timeeat * 1000);
 	pthread_mutex_unlock(&ronowa->data->fork[left]);
 	pthread_mutex_unlock(&ronowa->data->fork[right]);
 	ft_print(ronowa, "is sleeping");
-	sleepo((unsigned long)ronowa->data->timesleep);
+	usleep(ronowa->data->timesleep * 1000);
 	pthread_mutex_lock(ronowa->data->_eat);
 	ronowa->nm_of_meal++;
 	pthread_mutex_unlock(ronowa->data->_eat);
@@ -68,7 +68,7 @@ void	to_routine_two(t_philo *ronowa)
 		}
 		i++;
 	}
-	usleep(500);
+	usleep(60 * 1000);
 	i = 0;
 	while (i < ronowa->data->philo)
 	{
@@ -101,9 +101,8 @@ int	main(int ac, char **av)
 		to_routine_two(ronowa);
 		while (1)
 		{
+			died_1(ronowa);
 			if (died_2(ronowa) == 1)
-				break ;
-			if (died_1(ronowa) == 1)
 				break ;
 		}
 	}

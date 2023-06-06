@@ -6,13 +6,13 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 05:05:10 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/03 15:36:18 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:27:21 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	died_1(t_philo *ronowa)
+void	died_1(t_philo *ronowa)
 {
 	int	i;
 	int	j;
@@ -29,14 +29,12 @@ int	died_1(t_philo *ronowa)
 			if (j == ronowa->data->philo)
 			{
 				pthread_mutex_unlock(ronowa->data->_eat);
-				if (ft_print(ronowa, "meal") == 1)
-					return (1);
+				return ;
 			}
 			i++;
 		}
 	}
 	pthread_mutex_unlock(ronowa->data->_eat);
-	return (0);
 }
 
 int	died_2(t_philo *ronowa)
@@ -47,7 +45,7 @@ int	died_2(t_philo *ronowa)
 	while (i < ronowa->data->philo)
 	{
 		pthread_mutex_lock(ronowa->data->_died);
-		if (get_time() - ronowa[i].last_meal >= ronowa->data->timedie)
+		if (get_time() - ronowa[i].last_meal > ronowa->data->timedie)
 		{
 			pthread_mutex_lock(ronowa->data->_eat);
 			if (ronowa[i].nm_of_meal == ronowa->data->meal)

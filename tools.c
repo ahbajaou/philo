@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 02:57:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/03 15:35:46 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:32:01 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,12 @@ int	ft_error(void)
 	return (1);
 }
 
-long long	get_time(void)
+int	get_time(void)
 {
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
-
-void	sleepo(unsigned long t_sleep)
-{
-	unsigned long	start_time;
-
-	start_time = get_time();
-	usleep(t_sleep);
-	while (((get_time() - start_time)) < t_sleep)
-		;
 }
 
 int	ft_print(t_philo *philo, char *str)
