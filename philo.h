@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/07 16:04:33 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:33:26 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct t_data{
 	pthread_mutex_t	*_race;
 	pthread_t		ph;
 	int				philo;
-	long long				timeeat;
-	long long			timedie;
-	long long				timesleep;
+	long long		timeeat;
+	long long		timedie;
+	long long		timesleep;
 	int				meal;
 }t_data;
 
