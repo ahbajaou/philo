@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/06 20:24:38 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/07 02:34:46 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct t_data{
 }t_data;
 
 typedef struct t_philo{
-	long long		time_start;
-	long long		last_meal;
+	int				time_start;
+	int				last_meal;
 	int				nm_of_meal;
 	int				ident;
 	struct t_data	*data;
@@ -55,6 +55,7 @@ void		stock_3(t_data *zoro, int nbr);
 int			check_pars(char **data, int ac);
 char		**ft_split(char *str, char sep);
 int			ft_strlen(char *str);
+void		sleepo(int t_sleep);
 char		*ft_strjoin(char *s1, char *s2);
 
 #endif

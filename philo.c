@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:29:47 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/06 20:31:52 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/07 02:34:21 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	routine_2(t_philo *ronowa, int left, int right)
 {
-	usleep(ronowa->data->timeeat * 1000);
+	sleepo(ronowa->data->timeeat);
 	pthread_mutex_unlock(&ronowa->data->fork[left]);
 	pthread_mutex_unlock(&ronowa->data->fork[right]);
 	ft_print(ronowa, "is sleeping");
-	usleep(ronowa->data->timesleep * 1000);
+	sleepo(ronowa->data->timesleep);
 	pthread_mutex_lock(ronowa->data->_eat);
 	ronowa->nm_of_meal++;
 	pthread_mutex_unlock(ronowa->data->_eat);
@@ -68,8 +68,8 @@ void	to_routine_two(t_philo *ronowa)
 		}
 		i++;
 	}
-	usleep(60 * 1000);
 	i = 0;
+	usleep(450);
 	while (i < ronowa->data->philo)
 	{
 		if (i % 2 == 1)
