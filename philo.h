@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 00:15:40 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/07 02:34:46 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:04:33 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,29 @@ typedef struct t_data{
 	pthread_mutex_t	*_race;
 	pthread_t		ph;
 	int				philo;
-	int				timeeat;
-	int				timedie;
-	int				timesleep;
+	long long				timeeat;
+	long long			timedie;
+	long long				timesleep;
 	int				meal;
 }t_data;
 
 typedef struct t_philo{
-	int				time_start;
-	int				last_meal;
+	long long		time_start;
+	long long		last_meal;
 	int				nm_of_meal;
 	int				ident;
 	struct t_data	*data;
 }t_philo;
 
-int			get_time(void);
+typedef struct t_pars{
+	char	**data;
+}t_pars;
+long long	get_time(void);
+void		sleepo(long long t_sleep);
 int			ft_print(t_philo *philo, char *str);
 int			ft_error(void);
 int			ft_atoi(char *str);
-void		died_1(t_philo *ronowa);
+int			died_1(t_philo *ronowa);
 int			died_2(t_philo *ronowa);
 void		stock(t_data *zoro, char **av, int ac);
 void		stock_2(t_philo *ronowa, t_data *zoro, int nbr);
@@ -55,7 +59,6 @@ void		stock_3(t_data *zoro, int nbr);
 int			check_pars(char **data, int ac);
 char		**ft_split(char *str, char sep);
 int			ft_strlen(char *str);
-void		sleepo(int t_sleep);
 char		*ft_strjoin(char *s1, char *s2);
 
 #endif
