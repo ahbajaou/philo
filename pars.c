@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:55:55 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/10 03:03:05 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:35:00 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,20 @@
 int	ft_check_null(char **str)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (str[i])
 	{
 		if (!str[i][0] || str[i][0] == ' ')
 			return (1);
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == ' ' && str[i][j + 1] != ' ')
+				return (1);
+			j++;
+		}
 		i++;
 	}
 	return (0);
