@@ -6,13 +6,13 @@
 #    By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 00:20:56 by ahbajaou          #+#    #+#              #
-#    Updated: 2023/06/03 15:11:46 by ahbajaou         ###   ########.fr        #
+#    Updated: 2023/06/10 03:03:23 by ahbajaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SRC = philo.c tools.c died.c stock.c pars.c ft_split.c ft_strjoin.c
-CFLAGS = -Wall -Wextra -Werror -pthread #-fsanitize=thread -g
+SRC = philo.c tools.c died.c stock.c pars.c ft_split.c ft_strjoin.c ft_atoi.c
+CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 cc = gcc
 
  all : $(NAME)

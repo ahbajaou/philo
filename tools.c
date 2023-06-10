@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 02:57:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/07 22:02:05 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/10 03:05:48 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error(void)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	return (1);
 }
 

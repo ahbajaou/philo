@@ -6,35 +6,25 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:55:55 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/03 15:32:27 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/10 03:03:05 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <string.h>
 
-int	ft_atoi(char *str)
+int	ft_check_null(char **str)
 {
 	int	i;
-	int	k;
-	int	j;
 
 	i = 0;
-	k = 1;
-	j = 0;
-	while (str[i] == ' ' || (str[i] >= 7 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (str[i])
 	{
-		if (str[i] == '-')
-			k *= -1;
+		if (!str[i][0] || str[i][0] == ' ')
+			return (1);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		j = (j * 10) + str[i] - '0';
-		i++;
-	}
-	return (j * k);
+	return (0);
 }
 
 int	check_pars_2(char **str)
@@ -62,7 +52,7 @@ int	check_pars_3(char **str)
 		j = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == '-')
+			if (str[i][j] == '-' || str[i][j] == ' ')
 				return (1);
 			if ((str[i][j] >= 'a' && str[i][j] <= 'z')
 				|| (str[i][j] >= 'A' && str[i][j] <= 'Z'))
@@ -96,6 +86,8 @@ int	check_pars(char **data, int ac)
 
 	i = 1;
 	tmp = NULL;
+	if (ft_check_null(data) == 1)
+		return (ft_error());
 	while (i < ac)
 	{
 		tmp = ft_strjoin(tmp, data[i]);
@@ -104,12 +96,7 @@ int	check_pars(char **data, int ac)
 	}
 	data = ft_split(tmp, ' ');
 	free(tmp);
-	if (check_pars_3(data) == 1)
-	{
-		free2d(data);
-		return (ft_error());
-	}
-	if (check_pars_2(data) == 1)
+	if (check_pars_3(data) == 1 || check_pars_2(data) == 1)
 	{
 		free2d(data);
 		return (ft_error());
