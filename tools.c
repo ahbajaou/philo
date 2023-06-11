@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 02:57:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/10 03:05:48 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/11 04:28:25 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sleepo(long long t_sleep)
 
 	start_time = get_time();
 	while (((get_time() - start_time)) < t_sleep)
-		usleep(5);
+		usleep(50);
 }
 
 int	ft_print(t_philo *philo, char *str)
