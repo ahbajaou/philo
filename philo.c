@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 03:08:51 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/10 03:05:39 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/11 04:23:37 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	to_routine_two(t_philo *ronowa)
 		}
 		i++;
 	}
-	sleepo(100);
+	// sleepo(100);
+	usleep(500);
 	i = 0;
 	while (i < ronowa->data->philo)
 	{

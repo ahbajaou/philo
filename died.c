@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 05:05:10 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/06/07 16:19:34 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/06/11 04:23:50 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	died_2(t_philo *ronowa)
 	while (i < ronowa->data->philo)
 	{
 		pthread_mutex_lock(ronowa->data->_died);
-		if (get_time() - ronowa[i].last_meal > ronowa->data->timedie)
+		if (get_time() - ronowa[i].last_meal >= ronowa->data->timedie)
 		{
 			pthread_mutex_lock(ronowa->data->_eat);
 			if (ronowa[i].nm_of_meal == ronowa->data->meal)
